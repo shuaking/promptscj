@@ -15,19 +15,27 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     const itemsPerPage = 10;
 
-    // 从GitHub获取JSON数据
-    fetch(jsonUrl)
-        .then(response => response.json())
-        .then(jsonData => {
-            data = jsonData;
-            populateFilterOptions();
-            renderPage();
-        })
-        .catch(error => {
-            contentDiv.textContent = '无法获取数据：' + error;
-        });
+    function fetchJsonData(url) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络响应失败');
+                }
+                return response.json();
+            })
+            .then(jsonData => {
+                data = jsonData;
+                filteredData = data;
+                populateFilterOptions();
+                renderPage();
+            })
+            .catch(error => {
+                contentDiv.textContent = '无法获取数据：' + error.message;
+            });
+    }
 
     function populateFilterOptions() {
+        filterSelect.innerHTML = '<option value="">选择过滤条件</option>';
         const uniqueValues = new Set(data.map(item => item.category)); // 假设每个item有一个category属性
         uniqueValues.forEach(value => {
             const option = document.createElement('option');
@@ -94,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.getSelection().removeAllRanges();
     });
 
-    // 加载用户输入的JSON数据
     loadJsonButton.addEventListener('click', function() {
         try {
             const userInput = JSON.parse(jsonInput.value);
@@ -108,6 +115,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 初始加载全部数据
-    filteredData = data;
+    fetchJsonData(jsonUrl); // 初始加载GitHub上的JSON数据
 });
