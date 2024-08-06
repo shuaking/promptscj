@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prompts Plugin</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div id="container">
+    <h2>Prompts</h2>
+    <table>
+      <tr>
+        <th></th>
+        <th>画家</th>
+        <th>老师</th>
+        <th>设计</th>
+      </tr>
+      <tr>
+        <td>复制</td>
+        <td><button onclick="copyText('画家')">复制</button></td>
+        <td><button onclick="copyText('老师')">复制</button></td>
+        <td><button onclick="copyText('设计')">复制</button></td>
+      </tr>
+      <tr>
+        <td>导入</td>
+        <td><input type="file" id="fileInput-画家" accept=".json"><button onclick="importText('画家')">导入</button></td>
+        <td><input type="file" id="fileInput-老师" accept=".json"><button onclick="importText('老师')">导入</button></td>
+        <td><input type="file" id="fileInput-设计" accept=".json"><button onclick="importText('设计')">导入</button></td>
+      </tr>
+    </table>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
 
