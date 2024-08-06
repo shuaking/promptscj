@@ -80,6 +80,16 @@ button:hover {
     margin-bottom: 20px;
 }
 
+#jsonDisplay {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
 /* 分页控件样式 */
 #pagination {
     margin: 20px 0;
