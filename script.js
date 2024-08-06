@@ -1,37 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // GitHub JSON文件的URL
     const jsonUrl = 'https://raw.githubusercontent.com/your-repository/your-file.json';
-
-    // 获取DOM元素
     const contentDiv = document.getElementById('content');
     const copyButton = document.getElementById('copyButton');
+    const searchInput = document.getElementById('searchInput');
+    const filterSelect = document.getElementById('filterSelect');
+    const prevPageButton = document.getElementById('prevPage');
+    const nextPageButton = document.getElementById('nextPage');
+    const pageInfo = document.getElementById('pageInfo');
 
-    // 使用fetch获取JSON数据
+    let data = [];
+    let filteredData = [];
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
     fetch(jsonUrl)
         .then(response => response.json())
-        .then(data => {
-            // 将JSON数据显示在网页中
-            contentDiv.textContent = JSON.stringify(data, null, 2);
+        .then(jsonData => {
+            data = jsonData;
+            populateFilterOptions();
+            renderPage();
         })
         .catch(error => {
             contentDiv.textContent = '无法获取数据：' + error;
         });
 
-    // 复制功能
-    copyButton.addEventListener('click', function() {
-        const range = document.createRange();
-        range.selectNode(contentDiv);
-        window.getSelection().removeAllRanges(); // 清除当前的选中
-        window.getSelection().addRange(range); // 选中内容
+    function populateFilterOptions() {
+        const uniqueValues = new Set(data.map(item => item.category)); // 假设每个item有一个category属性
+        uniqueValues.forEach(value => {
+            const option = document.createElement('option');
+            option.value = value;
+            option.textContent = value;
+            filterSelect.appendChild(option);
+        });
+    }
 
-        try {
-            const successful = document.execCommand('copy');
-            const msg = successful ? '复制成功！' : '复制失败！';
-            alert(msg);
-        } catch (err) {
-            alert('复制失败！');
-        }
+    function renderPage() {
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageData = filteredData.slice(start, end);
+        contentDiv.textContent = JSON.stringify(pageData, null, 2);
+        pageInfo.textContent = `第 ${currentPage} 页，共 ${Math.ceil(filteredData.length / itemsPerPage)} 页`;
+    }
 
-        window.getSelection().removeAllRanges(); // 清除选中
+    searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        filteredData = data.filter(item => JSON.stringify(item).toLowerCase().includes(searchTerm));
+        currentPage = 1;
+        renderPage();
     });
-});
+
+    filterSelect.addEventListener('change', function() {
+        const filterValue = filterSelect.value;
+        if (filterValue) {
+            filteredData = data.filter(item => item.category === filterValue); // 假设每个item有一个category属性
+        } else {
+            filteredData = data;
+        }
+        currentPage = 1;
+        renderPage();
+    });
+
+    prevPageButton.addEventListener('click', function() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPage();
+        }
+    });
+
+    nextPageButton.addEventListener('click', function() {
+        if (currentPage < Math.ceil(filteredData.length / itemsPerPage)) {
+            currentPage++;
+            renderPage();
+       
