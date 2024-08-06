@@ -5,24 +5,27 @@ function copyText(role) {
   });
 }
 
-function importFromGitHub(role) {
-  const urlInput = document.getElementById('urlInput-' + role);
+function importFromGitHub() {
+  const urlInput = document.getElementById('urlInput');
   const url = urlInput.value;
   if (url) {
     fetch(url)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('网络响应错误');
         }
         return response.json();
       })
       .then(json => {
-        if (json[role]) {
-          saveTextByRole(role, json[role]);
-          alert(role + ' 内容已导入!');
-        } else {
-          alert('JSON文件中没有找到' + role + '的内容');
-        }
+        const roles = ['画家', '老师', '设计'];
+        roles.forEach(role => {
+          if (json[role]) {
+            saveTextByRole(role, json[role]);
+            alert(role + ' 内容已导入!');
+          } else {
+            alert('JSON文件中没有找到 ' + role + ' 的内容');
+          }
+        });
       })
       .catch(error => {
         alert('导入失败: ' + error.message);
