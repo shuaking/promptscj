@@ -5,27 +5,30 @@ function copyText(role) {
   });
 }
 
-function importText(role) {
-  const fileInput = document.getElementById('fileInput-' + role);
-  const file = fileInput.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        const json = JSON.parse(e.target.result);
+function importFromGitHub(role) {
+  const urlInput = document.getElementById('urlInput-' + role);
+  const url = urlInput.value;
+  if (url) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(json => {
         if (json[role]) {
           saveTextByRole(role, json[role]);
           alert(role + ' 内容已导入!');
         } else {
           alert('JSON文件中没有找到' + role + '的内容');
         }
-      } catch (err) {
-        alert('文件解析失败，请确保上传的是有效的JSON文件');
-      }
-    };
-    reader.readAsText(file);
+      })
+      .catch(error => {
+        alert('导入失败: ' + error.message);
+      });
   } else {
-    alert('请先选择一个JSON文件');
+    alert('请输入一个有效的GitHub文件URL');
   }
 }
 
