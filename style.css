@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+#container {
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+button {
+  padding: 5px 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input[type="file"] + button {
+  display: inline-block;
+}
