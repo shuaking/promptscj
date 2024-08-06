@@ -22,13 +22,24 @@
       </tr>
       <tr>
         <td>导入</td>
-        <td><input type="file" id="fileInput-画家" accept=".json"><button onclick="importText('画家')">导入</button></td>
-        <td><input type="file" id="fileInput-老师" accept=".json"><button onclick="importText('老师')">导入</button></td>
-        <td><input type="file" id="fileInput-设计" accept=".json"><button onclick="importText('设计')">导入</button></td>
+        <td>
+          <label for="fileInput-画家" class="custom-file-upload">选择文件</label>
+          <input type="file" id="fileInput-画家" accept=".json">
+          <button onclick="importText('画家')">导入</button>
+        </td>
+        <td>
+          <label for="fileInput-老师" class="custom-file-upload">选择文件</label>
+          <input type="file" id="fileInput-老师" accept=".json">
+          <button onclick="importText('老师')">导入</button>
+        </td>
+        <td>
+          <label for="fileInput-设计" class="custom-file-upload">选择文件</label>
+          <input type="file" id="fileInput-设计" accept=".json">
+          <button onclick="importText('设计')">导入</button>
+        </td>
       </tr>
     </table>
   </div>
   <script src="popup.js"></script>
 </body>
 </html>
-
