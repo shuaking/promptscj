@@ -7,12 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevPageButton = document.getElementById('prevPage');
     const nextPageButton = document.getElementById('nextPage');
     const pageInfo = document.getElementById('pageInfo');
+    const jsonInput = document.getElementById('jsonInput');
+    const loadJsonButton = document.getElementById('loadJsonButton');
 
     let data = [];
     let filteredData = [];
     let currentPage = 1;
     const itemsPerPage = 10;
 
+    // 从GitHub获取JSON数据
     fetch(jsonUrl)
         .then(response => response.json())
         .then(jsonData => {
@@ -71,4 +74,40 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentPage < Math.ceil(filteredData.length / itemsPerPage)) {
             currentPage++;
             renderPage();
-       
+        }
+    });
+
+    copyButton.addEventListener('click', function() {
+        const range = document.createRange();
+        range.selectNode(contentDiv);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+
+        try {
+            const successful = document.execCommand('copy');
+            const msg = successful ? '复制成功！' : '复制失败！';
+            alert(msg);
+        } catch (err) {
+            alert('复制失败！');
+        }
+
+        window.getSelection().removeAllRanges();
+    });
+
+    // 加载用户输入的JSON数据
+    loadJsonButton.addEventListener('click', function() {
+        try {
+            const userInput = JSON.parse(jsonInput.value);
+            data = userInput;
+            filteredData = data;
+            populateFilterOptions();
+            currentPage = 1;
+            renderPage();
+        } catch (error) {
+            alert('JSON格式不正确，请重新输入');
+        }
+    });
+
+    // 初始加载全部数据
+    filteredData = data;
+});
