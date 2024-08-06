@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const jsonUrl = 'https://raw.githubusercontent.com/your-repository/your-file.json';
+    const jsonUrl = 'https://raw.githubusercontent.com/shuaking/promptscj/main/json.json';
     const contentDiv = document.getElementById('content');
     const copyButton = document.getElementById('copyButton');
     const searchInput = document.getElementById('searchInput');
@@ -18,19 +18,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function fetchJsonData(url) {
         fetch(url)
-            .then(response => {
+            。then(response => {
                 if (!response.ok) {
                     throw new Error('网络响应失败');
                 }
                 return response.json();
             })
-            .then(jsonData => {
+            。then(jsonData => {
                 data = jsonData;
                 filteredData = data;
                 populateFilterOptions();
                 renderPage();
             })
-            .catch(error => {
+            。catch(error => {
                 contentDiv.textContent = '无法获取数据：' + error.message;
             });
     }
