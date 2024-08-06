@@ -56,23 +56,16 @@ button:hover {
   background-color: #0056b3;
 }
 
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  padding: 8px 16px;
+input[type="url"] {
+  padding: 8px;
+  width: calc(100% - 16px);
   font-size: 14px;
-  color: #007bff;
-  background-color: #e9ecef;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  margin-bottom: 8px;
-  transition: background-color 0.3s;
+  transition: border-color 0.3s;
 }
 
-.custom-file-upload:hover {
-  background-color: #d6d8db;
+input[type="url"]:focus {
+  border-color: #007bff;
 }
