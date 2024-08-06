@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageInfo = document.getElementById('pageInfo');
     const jsonInput = document.getElementById('jsonInput');
     const loadJsonButton = document.getElementById('loadJsonButton');
+    const jsonDisplay = document.getElementById('jsonDisplay'); // 用于显示导入的JSON数据
 
     let data = [];
     let filteredData = [];
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             populateFilterOptions();
             currentPage = 1;
             renderPage();
+            jsonDisplay.textContent = JSON.stringify(userInput, null, 2); // 显示导入的JSON数据
         } catch (error) {
             alert('JSON格式不正确，请重新输入');
         }
