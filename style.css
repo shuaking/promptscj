@@ -1,21 +1,86 @@
-/* 之前的样式保留不变 */
+/* 基本样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 容器样式 */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* 标题样式 */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 输入框和按钮的公共样式 */
+input, textarea, select, button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* 特定元素的样式 */
+#jsonInput {
+    height: 150px;
+    resize: vertical;
+}
+
+#loadJsonButton {
+    background-color: #2196F3;
+}
+
+#loadJsonButton:hover {
+    background-color: #1976D2;
+}
 
 #searchInput {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin-top: 20px;
 }
 
-#filterSelect {
-    width: calc(100% - 20px);
+#content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #f0f0f0;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
     border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
 }
 
+/* 分页控件样式 */
 #pagination {
     margin: 20px 0;
     display: flex;
@@ -24,19 +89,26 @@
 }
 
 #pagination button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     margin: 0 5px;
-}
-
-#pagination button:hover {
-    background-color: #45a049;
 }
 
 #pageInfo {
     margin: 0 10px;
+}
+
+/* 媒体查询，用于响应式设计 */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    input, textarea, select, button {
+        width: calc(100% - 10px);
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    #jsonInput {
+        height: 100px;
+    }
 }
