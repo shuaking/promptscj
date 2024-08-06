@@ -9,7 +9,17 @@
 <body>
     <div class="container">
         <h1>GitHub JSON Content Display</h1>
+        <input type="text" id="searchInput" placeholder="搜索内容...">
+        <select id="filterSelect">
+            <option value="">选择过滤条件</option>
+            <!-- 根据具体的JSON数据结构添加选项 -->
+        </select>
         <div id="content"></div>
+        <div id="pagination">
+            <button id="prevPage">上一页</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage">下一页</button>
+        </div>
         <button id="copyButton">复制内容</button>
     </div>
     <script src="script.js"></script>
