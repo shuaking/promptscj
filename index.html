@@ -10,29 +10,25 @@
     <table>
       <tr>
         <th></th>
-        <th>画家</th>
-        <th>老师</th>
-        <th>设计</th>
+        <th>操作</th>
       </tr>
       <tr>
-        <td>复制</td>
+        <td>复制 画家</td>
         <td><button onclick="copyText('画家')">复制</button></td>
+      </tr>
+      <tr>
+        <td>复制 老师</td>
         <td><button onclick="copyText('老师')">复制</button></td>
+      </tr>
+      <tr>
+        <td>复制 设计</td>
         <td><button onclick="copyText('设计')">复制</button></td>
       </tr>
       <tr>
         <td>导入</td>
         <td>
-          <input type="url" id="urlInput-画家" placeholder="输入GitHub文件URL">
-          <button onclick="importFromGitHub('画家')">导入</button>
-        </td>
-        <td>
-          <input type="url" id="urlInput-老师" placeholder="输入GitHub文件URL">
-          <button onclick="importFromGitHub('老师')">导入</button>
-        </td>
-        <td>
-          <input type="url" id="urlInput-设计" placeholder="输入GitHub文件URL">
-          <button onclick="importFromGitHub('设计')">导入</button>
+          <input type="url" id="urlInput" placeholder="输入GitHub文件URL">
+          <button onclick="importFromGitHub()">导入</button>
         </td>
       </tr>
     </table>
