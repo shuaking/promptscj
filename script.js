@@ -9,25 +9,28 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
         .then(data => {
-            const roleMenu = document.getElementById("roleItems");
+            const roleSelect = document.getElementById("roleSelect");
             const promptMenu = document.getElementById("promptItems");
             const promptContent = document.getElementById("promptContent");
 
             data.forEach((item, index) => {
-                const roleItem = document.createElement("div");
-                roleItem.className = "menu-item";
-                roleItem.textContent = item.act;
-                roleItem.addEventListener("click", () => {
-                    promptMenu.innerHTML = "";
-                    const promptItem = document.createElement("div");
-                    promptItem.className = "menu-item";
-                    promptItem.textContent = item.prompt;
-                    promptItem.addEventListener("click", () => {
-                        promptContent.textContent = item.prompt;
-                    });
-                    promptMenu.appendChild(promptItem);
+                const roleOption = document.createElement("option");
+                roleOption.value = index;
+                roleOption.textContent = item.act;
+                roleSelect.appendChild(roleOption);
+            });
+
+            roleSelect.addEventListener("change", () => {
+                promptMenu.innerHTML = "";
+                const selectedRoleIndex = roleSelect.value;
+                const selectedRole = data[selectedRoleIndex];
+                const promptItem = document.createElement("div");
+                promptItem.className = "menu-item";
+                promptItem.textContent = selectedRole.prompt;
+                promptItem.addEventListener("click", () => {
+                    promptContent.textContent = selectedRole.prompt;
                 });
-                roleMenu.appendChild(roleItem);
+                promptMenu.appendChild(promptItem);
             });
 
             document.getElementById("copyButton").addEventListener("click", () => {
