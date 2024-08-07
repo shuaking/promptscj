@@ -19,16 +19,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(data => {
-                const roleMenu = document.getElementById("roleMenu");
                 const roleSelect = document.getElementById("roleSelect");
-                const promptMenu = document.getElementById("promptMenu");
-                const promptItems = document.getElementById("promptItems");
-                const promptDisplay = document.getElementById("promptDisplay");
+                const promptMenu = document.getElementById("promptItems");
                 const promptContent = document.getElementById("promptContent");
 
                 // 清空现有内容
                 roleSelect.innerHTML = '<option value="" disabled selected>选择一个角色</option>';
-                promptItems.innerHTML = '';
+                promptMenu.innerHTML = '';
                 promptContent.textContent = '';
 
                 data.forEach((item, index) => {
@@ -39,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 roleSelect.addEventListener("change", () => {
-                    promptItems.innerHTML = "";
+                    promptMenu.innerHTML = "";
                     const selectedRoleIndex = roleSelect.value;
                     const selectedRole = data[selectedRoleIndex];
                     const promptItem = document.createElement("div");
@@ -48,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     promptItem.addEventListener("click", () => {
                         promptContent.textContent = selectedRole.prompt;
                     });
-                    promptItems.appendChild(promptItem);
-                    promptDisplay.style.display = 'block';
+                    promptMenu.appendChild(promptItem);
                     // 自动选择提示词
                     promptItem.click();
                 });
@@ -63,10 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         alert("没有提示词可以复制");
                     }
                 });
-
-                // 显示角色菜单和提示词菜单
-                roleMenu.style.display = 'block';
-                promptMenu.style.display = 'block';
             })
             .catch(error => console.error("Error fetching JSON:", error));
     }
