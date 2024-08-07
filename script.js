@@ -31,12 +31,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     promptContent.textContent = selectedRole.prompt;
                 });
                 promptMenu.appendChild(promptItem);
+                // 自动选择提示词
+                promptItem.click();
             });
 
             document.getElementById("copyButton").addEventListener("click", () => {
-                navigator.clipboard.writeText(promptContent.textContent)
-                    .then(() => alert("提示词已复制到剪贴板"))
-                    .catch(err => alert("复制失败: " + err));
+                if (promptContent.textContent) {
+                    navigator.clipboard.writeText(promptContent.textContent)
+                        .then(() => alert("提示词已复制到剪贴板"))
+                        .catch(err => alert("复制失败: " + err));
+                } else {
+                    alert("没有提示词可以复制");
+                }
             });
         })
         .catch(error => console.error("Error fetching JSON:", error));
