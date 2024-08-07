@@ -2,23 +2,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const githubUrl = "https://raw.githubusercontent.com/shuaking/promptscj/main/prompts-zh.json"; // 替换为你的GitHub JSON文件地址
 
     fetch(githubUrl)
-        。then(response => response.json())
-        。then(data => {
-            const roles = data.map(item => item.act);
-            const prompts = data.map(item => item.prompt);
-
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
             const roleMenu = document.getElementById("roleItems");
             const promptMenu = document.getElementById("promptItems");
             const promptContent = document.getElementById("promptContent");
 
-            roles.forEach((role, index) => {
+            data.forEach((item, index) => {
                 const roleItem = document.createElement("div");
                 roleItem.className = "menu-item";
-                roleItem.textContent = role;
+                roleItem.textContent = item.act;
                 roleItem.addEventListener("click", () => {
                     promptMenu.innerHTML = "";
-                    const promptArray = Array.isArray(prompts[index]) ? prompts[index] : [prompts[index]];
-                    promptArray.forEach(prompt => {
+                    item.prompt.forEach(prompt => {
                         const promptItem = document.createElement("div");
                         promptItem.className = "menu-item";
                         promptItem.textContent = prompt;
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("copyButton").addEventListener("click", () => {
                 navigator.clipboard.writeText(promptContent.textContent)
-                    。then(() => alert("提示词已复制到剪贴板"))
+                    .then(() => alert("提示词已复制到剪贴板"))
                     .catch(err => alert("复制失败: " + err));
             });
         })
