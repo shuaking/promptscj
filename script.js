@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const githubUrl = "https://raw.githubusercontent.com/yourusername/yourrepo/main/yourfile.json"; // 替换为你的GitHub JSON文件地址
+    const githubUrl = "https://raw.githubusercontent.com/shuaking/promptscj/main/prompts-zh.json"; // 替换为你的GitHub JSON文件地址
 
     fetch(githubUrl)
-        .then(response => response.json())
-        .then(data => {
+        。then(response => response.json())
+        。then(data => {
             const roles = data.map(item => item.act);
             const prompts = data.map(item => item.prompt);
 
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("copyButton").addEventListener("click", () => {
                 navigator.clipboard.writeText(promptContent.textContent)
-                    .then(() => alert("提示词已复制到剪贴板"))
+                    。then(() => alert("提示词已复制到剪贴板"))
                     .catch(err => alert("复制失败: " + err));
             });
         })
