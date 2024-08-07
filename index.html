@@ -19,7 +19,7 @@
             color: #333;
         }
 
-        #roleMenu, #promptMenu {
+        .menu {
             margin: 20px;
             padding: 10px;
             border: 1px solid #ccc;
@@ -35,6 +35,13 @@
             border-bottom: 2px solid #ddd;
             padding-bottom: 5px;
             margin-top: 0;
+        }
+
+        #roleMenu select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .menu-item {
@@ -87,11 +94,13 @@
 </head>
 <body>
     <h1>JSON Prompt Viewer</h1>
-    <div id="roleMenu">
+    <div id="roleMenu" class="menu">
         <h2>角色菜单</h2>
-        <div id="roleItems"></div>
+        <select id="roleSelect">
+            <option value="" disabled selected>选择一个角色</option>
+        </select>
     </div>
-    <div id="promptMenu">
+    <div id="promptMenu" class="menu">
         <h2>提示词菜单</h2>
         <div id="promptItems"></div>
     </div>
