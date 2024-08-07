@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const githubUrl = "https://raw.githubusercontent.com/yourusername/yourrepo/main/yourfile.json"; // 替换为你的GitHub JSON文件地址
+    const githubUrl = "https://raw.githubusercontent.com/shuaking/promptscj/main/prompts-zh.json"; // 替换为你的GitHub JSON文件地址
 
     fetch(githubUrl)
         .then(response => {
