@@ -19,15 +19,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 roleItem.textContent = item.act;
                 roleItem.addEventListener("click", () => {
                     promptMenu.innerHTML = "";
-                    item.prompt.forEach(prompt => {
-                        const promptItem = document.createElement("div");
-                        promptItem.className = "menu-item";
-                        promptItem.textContent = prompt;
-                        promptItem.addEventListener("click", () => {
-                            promptContent.textContent = prompt;
-                        });
-                        promptMenu.appendChild(promptItem);
+                    const promptItem = document.createElement("div");
+                    promptItem.className = "menu-item";
+                    promptItem.textContent = item.prompt;
+                    promptItem.addEventListener("click", () => {
+                        promptContent.textContent = item.prompt;
                     });
+                    promptMenu.appendChild(promptItem);
                 });
                 roleMenu.appendChild(roleItem);
             });
