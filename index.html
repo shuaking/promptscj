@@ -1,29 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub JSON Content Display</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>JSON Prompt Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #roleMenu, #promptMenu {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background-color: #e9ecef;
+        }
+
+        #promptDisplay {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            white-space: pre-wrap;
+        }
+
+        #promptContent {
+            font-size: 1em;
+            color: #555;
+            margin: 0;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>GitHub JSON Content Display</h1>
-        <textarea id="jsonInput" rows="10" cols="50" placeholder="在此输入JSON数据..."></textarea>
-        <button id="loadJsonButton">加载JSON数据</button>
-        <input type="text" id="searchInput" placeholder="搜索内容...">
-        <select id="filterSelect">
-            <option value="">选择过滤条件</option>
-            <!-- 根据具体的JSON数据结构添加选项 -->
-        </select>
-        <div id="content"></div>
-        <div id="pagination">
-            <button id="prevPage">上一页</button>
-            <span id="pageInfo"></span>
-            <button id="nextPage">下一页</button>
-        </div>
-        <button id="copyButton">复制内容</button>
-        <div id="jsonDisplay"></div> <!-- 用于显示导入的JSON数据 -->
+    <h1>JSON Prompt Viewer</h1>
+    <div id="roleMenu">
+        <h2>角色菜单</h2>
+        <div id="roleItems"></div>
+    </div>
+    <div id="promptMenu">
+        <h2>提示词菜单</h2>
+        <div id="promptItems"></div>
+    </div>
+    <div id="promptDisplay">
+        <h2>提示词内容</h2>
+        <pre id="promptContent"></pre>
+        <button id="copyButton">复制提示词</button>
     </div>
     <script src="script.js"></script>
 </body>
