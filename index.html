@@ -4,101 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Prompt Viewer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .menu {
-            margin: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        h2 {
-            font-size: 1.2em;
-            color: #444;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-
-        #roleMenu select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .menu-item {
-            cursor: pointer;
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.2s;
-        }
-
-        .menu-item:last-child {
-            border-bottom: none;
-        }
-
-        .menu-item:hover {
-            background-color: #e9ecef;
-        }
-
-        #promptDisplay {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            white-space: pre-wrap;
-        }
-
-        #promptContent {
-            font-size: 1em;
-            color: #555;
-            margin: 0;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>JSON Prompt Viewer</h1>
-    <div class="menu">
-        <h2>输入 GitHub URL</h2>
-        <input type="text" id="githubUrlInput" placeholder="输入 GitHub JSON 文件的 URL">
-        <button id="loadButton">加载</button>
-    </div>
     <div id="roleMenu" class="menu">
         <h2>角色菜单</h2>
         <select id="roleSelect">
