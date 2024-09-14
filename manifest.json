@@ -1,17 +1,18 @@
 {
-  "manifest_version": 3,
-  "name": "Prompts Plugin",
-  "version": "1.0",
-  "description": "A plugin to manage prompts",
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
-  },
-  "permissions": [
-    "storage"
-  ]
-}
+    "manifest_version": 3,
+    "name": "JSON Prompt Viewer",
+    "version": "1.0",
+    "description": "A Chrome extension to view and copy JSON prompts.",
+    "icons": {
+      "48": "images/icon.png"
+    },
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "images/icon.png"
+    },
+    "permissions": [
+      "activeTab",
+      "clipboardWrite"
+    ]
+  }
+  
